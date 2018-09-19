@@ -1,10 +1,10 @@
-package com.erik.learn.secureapi.controller;
+package com.erik.learn.secureapi.web.controller;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-import com.erik.learn.secureapi.model.Person;
+import com.erik.learn.secureapi.persistent.model.Person;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;

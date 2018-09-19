@@ -1,10 +1,10 @@
-package com.erik.learn.secureapi.controller;
+package com.erik.learn.secureapi.web.controller;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import com.erik.learn.secureapi.helper.TokenHelper;
-import com.erik.learn.secureapi.model.User;
+import com.erik.learn.secureapi.persistent.model.User;
 import lombok.AllArgsConstructor;
 
 import org.springframework.http.ResponseEntity;

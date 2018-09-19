@@ -5,6 +5,7 @@ import java.util.Collections;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
+import com.auth0.jwt.exceptions.JWTDecodeException;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import org.joda.time.LocalDateTime;
 
@@ -25,7 +26,7 @@ public class TokenHelper {
 				.sign(algorithm);
 	}
 
-	public static User decodeToken(String token) {
+	public static User decodeToken(String token) throws JWTDecodeException {
 
 		DecodedJWT decode = JWT.decode(token);
 		return new User(

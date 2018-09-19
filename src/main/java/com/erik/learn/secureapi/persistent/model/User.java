@@ -1,4 +1,4 @@
-package com.erik.learn.secureapi.model;
+package com.erik.learn.secureapi.persistent.model;
 
 import lombok.Builder;
 import lombok.Data;
