@@ -6,15 +6,16 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
-import static org.springframework.http.HttpMethod.GET;
 import static org.springframework.http.HttpMethod.POST;
 
 @Configuration
+@EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Autowired
@@ -30,14 +31,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 
-		//Implementing Token based authentication in this filter
-//		TokenAuthenticationFilter tokenFilter = new TokenAuthenticationFilter();
-//		http.addFilterBefore(tokenFilter, BasicAuthenticationFilter.class);
+		TokenAuthenticationFilter tokenFilter = new TokenAuthenticationFilter();
+		http.addFilterBefore(tokenFilter, BasicAuthenticationFilter.class);
 		http.authorizeRequests()
 				.antMatchers(POST, "/api/authenticate").permitAll()
-				.antMatchers(GET, "/api/person").permitAll()
-				.antMatchers(POST, "/api/person").hasRole("ADMIN")
-				.anyRequest().authenticated();
+				.antMatchers(POST, "/api/person").permitAll()
+				.anyRequest().authenticated()
+				.and().csrf().disable();
 	}
 
 	@Bean
